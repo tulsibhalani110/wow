@@ -7,9 +7,6 @@ pipeline {
                 script {
     
                     docker.image('ho').inside {
-                        
-                        checkout scm
-                        sh 'Docker clean package'
                         docker.build('ho:latest', '-f Dockerfile.build .')
                     }
                 }
