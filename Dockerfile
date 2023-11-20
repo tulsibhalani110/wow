@@ -2,10 +2,7 @@
 FROM node:14
 
 # Set the working directory inside the container
-WORKDIR /app
-
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+WORKDIR /usr/share/nginx/html
 
 # Install dependencies
 RUN npm install
@@ -14,7 +11,7 @@ RUN npm install
 COPY . .
 
 # Expose a port (if your application requires it)
-EXPOSE 3000
+EXPOSE 84
 
 # Define the command to run your application
 CMD ["npm", "start"]
