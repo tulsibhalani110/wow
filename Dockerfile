@@ -1,8 +1,5 @@
 
-FROM node:80
-WORKDIR /usr/share/nginx/html
+FROM ubuntu:latest
 
-COPY . .
-
-EXPOSE 84
-CMD ["npm", "start"]
+# Add an echo statement to the Dockerfile
+RUN echo "Hello from Docker image!"
