@@ -1,23 +1,21 @@
-ppipeline {
+pipeline {
     agent any
+
     stages {
         stage('Build Docker Image') {
-            steps{
+            steps {
                 script {
-                    sh 'docker build -t your-image-name:latest .'
-                    sh 'docker ps'
+                    // Define the Docker image name and tag
+                    def imageName = 'your-docker-image'
+                    def imageTag = 'latest'
+
+                    // Build the Docker image with echo statement
+                    sh "docker build -t ${alpine}:${latest} -f Dockerfile ."
+
+                    // Push the Docker image (optional)
+                    // sh "docker push ${alpine}:${latest}"
                 }
-
             }
-        }
-    }
-    post {
-        success {
-            echo 'Docker build successful!'
-        }
-
-        failure {
-            echo 'Docker build failed!'
         }
     }
 }
