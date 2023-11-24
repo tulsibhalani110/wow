@@ -1,21 +1,24 @@
 pipeline {
     agent any
-
     stages {
         stage('Build Docker Image') {
-            steps {
+            steps{
                 script {
-                    // Define the Docker image name and tag
-                    def imageName = 'your-docker-image'
-                    def imageTag = 'latest'
-
-                    // Build the Docker image with echo statement
-                    sh "docker build -t ${alpine}:${latest} -f Dockerfile ."
-
-                    // Push the Docker image (optional)
-                    // sh "docker push ${alpine}:${latest}"
+                    docker ps
+                   git 'https://github.com/tulsibhalani110/myappsample.git'
+                    docker.build('your-image-name')
                 }
             }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Docker build successful!'
+        }
+
+        failure {
+            echo 'Docker build failed!'
         }
     }
 }
