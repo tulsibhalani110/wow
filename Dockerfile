@@ -1,19 +1,15 @@
 
-# Use an official Node.js image as the base
-FROM nginx:latest
 
-# Set the working directory
+# syntax=docker/dockerfile:1
+FROM node:14
+
 WORKDIR /app
 USER root 
 
-# Copy package.json and install dependencie
+COPY package*.json ./
 RUN mkdir -p /var/docker
-
-# Copy the rest of the application code
+RUN npm install
 COPY . .
 
-# Expose the port the application runs on
 EXPOSE 3000
-
-# Start the application
-CMD ["npm", "start"]
+CMD ["node", "app.js"]
