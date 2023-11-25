@@ -7,7 +7,10 @@ pipeline {
         }
     }
     stages {
-        stage('Build') {
+        stage('Build docker image') {
+             environment {
+                HOME = "${env.WORKSPACE}"
+            }
             steps {
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/tulsibhalani110/wow.git']])
                 sh 'docker build -t alpine .'
