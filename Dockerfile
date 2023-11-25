@@ -4,10 +4,10 @@ FROM node:14-alpine
 
 # Set the working directory
 WORKDIR /app
+USER root 
 
-# Copy package.json and install dependencies
-COPY package.json ./
-RUN npm install
+# Copy package.json and install dependencie
+RUN mkdir -p /var/docker
 
 # Copy the rest of the application code
 COPY . .
