@@ -1,16 +1,15 @@
 
 pipeline {
-    agent {
-        docker {
-            image 'docker:latest'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+    agent any
     stages {
-        stage('Build docker image') {
+        stage("Build Docker Image") {
+            environment {
+                HOME = "${env.WORKSPACE}"
+            }
             steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/tulsibhalani110/wow.git']])
-                sh 'docker build -t alpine .'
+                script {
+                    docker.build("<alpine>:${env.alpine}")
+                }
             }
         }
     }
