@@ -1,6 +1,6 @@
 
 # Use an official Node.js image as the base
-FROM node:14-alpine
+FROM nginx:latest
 
 # Set the working directory
 WORKDIR /app
